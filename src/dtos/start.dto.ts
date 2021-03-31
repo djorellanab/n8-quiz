@@ -5,5 +5,5 @@ export default class StartDto {
     @IsString()
     @IsNotEmpty()
     @ApiProperty()
-    message: string;
+    message!: string;
 }

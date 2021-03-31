@@ -1,0 +1,63 @@
+version: "3.7"
+
+volumes:
+  postgres-data:
+
+networks:
+  private-network:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test
+    networks: 
+      - private-network
+    ports:
+      - ${DB_PORT}:5432
+
+  orm:
+    image: djob195/n8-orm:1.0.0
+    networks: 
+      - private-network
+    depends_on: 
+      - postgres
+    environment: 
+      - WAIT_HOSTS=postgres:5432
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+  
+  api:
+    build: 
+      context: .
+    networks: 
+      - private-network
+    depends_on: 
+      - orm
+      - postgres
+    ports:
+      - ${API_PORT}:${API_PORT}
+    environment: 
+      - WAIT_HOSTS=postgres:5432
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+      - API_PORT=8089
+      - DB_TYPE=postgres
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=test
+      - DB_PASSWORD=test
+      - DB_DATABASE=test
+      - DB_SYNCHRONIZE=true
+      - DB_LOGGING=false
+      - TYPEORM_ENTITIES=src/entity/**/*.ts
+      - TYPEORM_MIGRATIONS=src/migration/**/*.ts
+      - TYPEORM_ENTITIES_DIR=src/entity
+      - TYPEORM_MIGRATIONS_DIR=src/migration

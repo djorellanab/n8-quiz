@@ -4,7 +4,7 @@ import {Entities} from '@djorellanab/n8-orm';
 
 export default TypeOrmModule.forRoot({
     cli: n8configs.databaseConfig.cli,
-    logging: n8configs.databaseConfig.logging,
+    logging: false,
     migrations: n8configs.databaseConfig.migrations,
     subscribers: n8configs.databaseConfig.subscribers,
     type: 'postgres',

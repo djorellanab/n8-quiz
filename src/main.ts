@@ -9,14 +9,13 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   
   const config = new DocumentBuilder()
-    .setTitle('Api example')
-    .setDescription('The N8 API description')
+    .setTitle('Api Documention')
+    .setDescription('This is the api documentation that was created on the test')
     .setVersion('1.0')
-    .addTag('n8')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('documentation', app, document);
   
   await app.listen(n8configs.apiConfig.port);
 }

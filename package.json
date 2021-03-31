@@ -20,8 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@djorellanab/n8-configuration": "^1.0.1",
-    "@djorellanab/n8-orm": "0.0.4",
+    "@djorellanab/n8-configuration": "^1.0.2",
+    "@djorellanab/n8-orm": "0.0.6",
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
     "@nestjs/mapped-types": "^0.4.0",
