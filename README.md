@@ -4,7 +4,7 @@ This is a project developed for Backend quiz on the company, Number 8.
 - [Docker](https://docs.docker.com)
 - [Docker compose](https://docs.docker.com/compose/install/)
 ## Environments variables
-You must set values on the file **.env**
+You must set values on the file **.env** (You can copy the file, **example.env**)
 - API_PORT: Port of the API.
 - DB_PORT: Port of the database.
 Observations: In this project has anothers variables, but they was set with default values (For demo reasons).
