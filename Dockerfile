@@ -13,6 +13,7 @@ RUN chmod +x /wait
 
 WORKDIR /usr/src/app
 COPY . .
+RUN npm install
 RUN chmod +x /startup.sh
 
 ENTRYPOINT sh -c "/startup.sh"
